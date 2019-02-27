@@ -1,0 +1,63 @@
+Angular Authenthication 
+using mean stack
+
+1.set routes 
+2.set up mongo db
+3.set up connection to mongodb(mongoose .connect)
+4.set up db schema
+5.set up mongoose 
+6.set up post route and
+       use save method for register ,
+        use findOne method for login
+7. since the authentication part were focusing we save the 
+    events in local in api file itself
+    create get routes for events in the api file itself
+
+After move to Angular
+Generate new app
+add components and routing
+develop registration ui and service
+develop login ui and service
+develop events ui and service
+add authentication
+login/logout button ui logic
+
+
+registercomponent 
+registeruser
+registeruser service 
+registeruser service makes post request 
+backend register the details and returns response
+in register component we subscribe to get the response from the back end 
+in the backend require and use cors so that the cross origin issue resolves
+repeat this steps for the login , events , special events
+
+then adding authentication
+jsonwebtoken
+const jwt = require('jwt')
+jwt sign to generate the token
+first create the payload
+create token with the payload and secretkey
+  payload = { subject : user._id}
+                 token = jwt.sign(payload, 'secretKey')
+                res.status(200).send({token})
+
+after create the token make them to store in browser local
+storage by 
+localStorage.setItem('token',res.token)
+we can see the token the browser by click inspect-> application->localStorge->localhost
+then after creating the token navigate the user to the special events
+
+route guard
+to prevent un login user from getting into the special events
+ng g guard auth 
+create a loggedin method in auth service which checks whether
+ the token is present or not 
+create a canActivate method from which call the logged in method 
+ and check if not the redirect to login set false or give the access return true;
+ in app.routing.module set canActivate : [Authguard]
+
+
+ token verification from browser to the server
+ 
+
